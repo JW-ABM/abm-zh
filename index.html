@@ -35,18 +35,36 @@
         }
 
         /* 音乐控制 */
-        .music-control {
-            position: fixed; top: 25px; left: 25px; z-index: 1000;
-            width: 40px; height: 40px; 
-            border: 0.5px solid rgba(212,175,55,0.4); 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; background: rgba(0,0,0,0.3); transition: all 0.5s ease;
-            backdrop-filter: blur(5px);
-        }
-        .music-icon { font-size: 14px; color: var(--static-gold); }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .rotating { animation: rotate 4s linear infinite; }
-
+               .music-control {
+    position: fixed; 
+    top: 30px; /* 下移一点点，与导航对齐 */
+    left: 20px; 
+    z-index: 1000;
+    width: 32px;  /* 缩小尺寸 */
+    height: 32px; 
+    /* 极致透明的边框 */
+    border: 0.3px solid rgba(212,175,55,0.15); 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer; 
+    background: rgba(0,0,0,0.1); /* 几乎全透明 */
+    transition: all 0.5s ease;
+    backdrop-filter: blur(2px); /* 轻微模糊，增加高级感但不遮字 */
+}
+       /* 图标更淡一些 */ 
+        .music-icon { 
+    font-size: 12px; /* 缩小图标 */
+    color: var(--static-gold); 
+    opacity: 0.4; /* 初始透明度设为 0.4 */
+    transition: opacity 0.3s ease;
+}
+        /* 播放时图标亮起，更有交互感 */
+.music-control:active .music-icon,
+.rotating {
+    opacity: 0.8; 
+}
         /* 右上角导航 */
         .floating-nav {
             position: fixed; top: 30px; right: 25px; z-index: 1000;
