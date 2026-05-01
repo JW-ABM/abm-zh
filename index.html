@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>JW.ABM | 株式会社</title>
+    <meta name="description" content="不讲故事，只解决实际问题。用真实经历，讨论现实选择与长期结构。">
+    <meta name="keywords" content="出国咨询, 跨境贸易, 电商运营, 网站建设, JW.ABM | 墨金">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abm-mj.pages.dev/">
+    <meta property="og:title" content="JW.ABM | 墨金">
+    <meta property="og:description" content="出国咨询, 跨境贸易, 电商运营, 网站建设。">
+    <meta property="og:image" content="https://abm-mj.pages.dev/cover.jpg">
+
+    <meta itemprop="name" content="JW.ABM">
+    <meta itemprop="image" content="https://abm-mj.pages.dev/cover.jpg">
+    <meta itemprop="description" content="不讲故事，只解决实际问题。">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        /* 2. 视觉打磨：定义墨金色与简体高级感 */
+        :root {
+            --ink-gold: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #d4af37 100%);
+            --static-gold: #d4af37;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            background-color: #000; 
+            /* 简体专用字体栈：优先调用细体，增加呼吸感 */
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; 
+            font-weight: 300;
+            color: var(--static-gold); 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: 0.15em; /* 增加字间距，让简体字不局促 */
+        }
+
+        /* 音乐控制 */
+        .music-control {
+            position: fixed; top: 25px; left: 25px; z-index: 1000;
+            width: 40px; height: 40px; 
+            border: 0.5px solid rgba(212,175,55,0.4); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; background: transparent; transition: all 0.5s ease;
+        }
+        .music-icon { font-size: 14px; color: var(--static-gold); }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .rotating { animation: rotate 4s linear infinite; }
+
+        /* 右上角导航 */
+        .floating-nav {
+            position: fixed; top: 30px; right: 25px; z-index: 1000;
+            display: flex; flex-direction: column; gap: 20px; text-align: right;
+        }
+        .nav-link { text-decoration: none !important; transition: all 0.3s ease; }
+        .main-text { font-size: 13px; color: var(--static-gold); letter-spacing: 3px; display: block; }
+        .sub-text { font-size: 8px; color: rgba(212,175,55,0.5); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; display: block; }
+
+        /* 图片展示区 */
+        .gallery { width: 100%; background: #000; }
+        .gallery img { width: 100%; display: block; transition: opacity 1s ease; }
+
+        /* 3. 过渡区域：电影感文字排版 */
+        .transition-section {
+            padding: 160px 20px; text-align: center; background: #000;
+            display: flex; flex-direction: column; justify-content: center; min-height: 65vh;
+        }
+        .transition-section p { 
+            color: var(--static-gold); 
+            font-size: 15px; line-height: 2.8; letter-spacing: 5px; 
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .gold-ink {
+            margin-top: 30px; 
+            font-size: 21px; 
+            font-weight: 400; 
+            letter-spacing: 7px;
+            background: var(--ink-gold);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 15px rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* 底部固定背景 */
+        .fixed-bg-section {
+            position: relative; width: 100%; height: 100vh;
+            background: url('img5.jpg') center center no-repeat fixed; 
+            background-size: cover;
+            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+        }
+        /* 遮罩，让底部文字更清晰 */
+        .fixed-bg-section::after {
+            content: ""; position: absolute; bottom: 0; width: 100%; height: 90%;
+            background: linear-gradient(to top, #000 35%, transparent 100%); z-index: 1;
+        }
+
+        .footer-overlay { position: relative; z-index: 10; padding-bottom: 60px; text-align: center; width: 100%; }
+        
+        /* 获客入口样式 */
+        .contact-links { margin-bottom: 35px; display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
+        .contact-links a { 
+            color: var(--static-gold); 
+            text-decoration: none; font-size: 13px; border-bottom: 0.5px solid rgba(212,175,55,0.4);
+            padding-bottom: 5px; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        
+        .qr-group { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .qr-item img { 
+            width: 110px; height: 110px; 
+            border: 0.5px solid rgba(212,175,55,0.3); 
+            border-radius: 4px; background: #fff; padding: 5px; 
+        }
+        .qr-item span { display: block; margin-top: 15px; font-size: 11px; color: var(--static-gold); letter-spacing: 2px; opacity: 0.7; }
+        
+        .copyright { color: rgba(212,175,55,0.3); font-size: 9px; margin-top: 40px; letter-spacing: 4px; }
+
+        @media (max-width: 480px) {
+            .transition-section { padding: 100px 20px; }
+            .gold-ink { font-size: 18px; }
+            .qr-item img { width: 105px; height: 105px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="music-btn" class="music-control">
+        <audio id="bg-audio" src="bgm.mp3" loop preload="auto"></audio>
+        <span class="music-icon"><i class="fa-solid fa-compact-disc"></i></span>
+    </div>
+
+    <nav class="floating-nav">
+        <a href="https://jwabmbou.studio.site" target="_blank" class="nav-link">
+            <span class="main-text">日本語</span>
+            <span class="sub-text">Language Service</span>
+        </a>
+        <a href="https://abm-mj.pages.dev" target="_blank" class="nav-link">
+            <span class="main-text">JW.ABM | 墨金</span>
+            <span class="sub-text">Global Business</span>
+        </a>
+    </nav>
+
+    <div class="gallery">
+        <img src="img1.jpg" alt="情绪开篇" loading="eager">
+        <img src="img2.jpg" alt="真实观察" loading="lazy">
+        <img src="img3.jpg" alt="现实逻辑" loading="lazy">
+        <img src="img4.jpg" alt="决策价值" loading="lazy">
+    </div>
+
+    <div class="transition-section">
+        <p>有想法，但没方向？</p>
+        <p>很多时候，选择比努力更需要逻辑</p>
+        <div class="gold-ink" onclick="copyWechat()">可以先找我聊清楚</div>
+    </div>
+
+    <div class="fixed-bg-section">
+        <div class="footer-overlay">
+            <div class="contact-links">
+                <a href="tel:08093084568"><i class="fa-solid fa-phone"></i> 电话联络</a>
+                <a href="https://line.me/ti/p/szmkPgsXTu/"><i class="fa-brands fa-line"></i> LINE 咨询</a>
+                <a href="mailto:jw.abm777@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+
+            
+            <p class="copyright">不讲故事 · 只解决实际问题</p>
+        </div>
+    </div>
+
+    <script>
+        // 音乐交互
+        const btn = document.getElementById('music-btn');
+        const audio = document.getElementById('bg-audio');
+        const icon = document.querySelector('.music-icon');
+        let isPlaying = false;
+
+        btn.onclick = function() {
+            if (!isPlaying) { 
+                audio.play(); 
+                icon.classList.add('rotating'); 
+            } else { 
+                audio.pause(); 
+                icon.classList.remove('rotating'); 
+            }
+            isPlaying = !isPlaying;
+        };
+
+        // 获客钩子：点击复制微信号
+        function copyWechat() {
+            const wechatId = "l08093084568"; // 这里填入你的真实微信号
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(wechatId).then(() => {
+                    showSuccess();
+                });
+            } else {
+                const input = document.createElement('input');
+                input.value = wechatId;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                showSuccess();
+            }
+        }
+
+        function showSuccess() {
+            alert("微信号已复制。备注“看完了”，我会知道你是谁。");
+        }
+    </script>
+</body>
+</html>
