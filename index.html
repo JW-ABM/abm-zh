@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>JW.ABM | 株式会社</title>
+    <title>JW.ABM|株式会社 不讲故事，只解决实际问题。</title>
     <meta name="description" content="不讲故事，只解决实际问题。用真实经历，讨论现实选择与长期结构。">
     <meta name="keywords" content="出国咨询, 跨境贸易, 电商运营, 网站建设, JW.ABM | 墨金">
     
@@ -14,14 +14,9 @@
     <meta property="og:description" content="出国咨询, 跨境贸易, 电商运营, 网站建设。">
     <meta property="og:image" content="https://abm-mj.pages.dev/cover.jpg">
 
-    <meta itemprop="name" content="JW.ABM">
-    <meta itemprop="image" content="https://abm-mj.pages.dev/cover.jpg">
-    <meta itemprop="description" content="不讲故事，只解决实际问题。">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
     <style>
-        /* 2. 视觉打磨：定义墨金色与简体高级感 */
         :root {
             --ink-gold: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #d4af37 100%);
             --static-gold: #d4af37;
@@ -31,13 +26,12 @@
 
         body { 
             background-color: #000; 
-            /* 简体专用字体栈：优先调用细体，增加呼吸感 */
             font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; 
             font-weight: 300;
             color: var(--static-gold); 
             overflow-x: hidden; 
             -webkit-font-smoothing: antialiased;
-            letter-spacing: 0.15em; /* 增加字间距，让简体字不局促 */
+            letter-spacing: 0.15em;
         }
 
         /* 音乐控制 */
@@ -46,7 +40,8 @@
             width: 40px; height: 40px; 
             border: 0.5px solid rgba(212,175,55,0.4); 
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; background: transparent; transition: all 0.5s ease;
+            cursor: pointer; background: rgba(0,0,0,0.3); transition: all 0.5s ease;
+            backdrop-filter: blur(5px);
         }
         .music-icon { font-size: 14px; color: var(--static-gold); }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -63,12 +58,12 @@
 
         /* 图片展示区 */
         .gallery { width: 100%; background: #000; }
-        .gallery img { width: 100%; display: block; transition: opacity 1s ease; }
+        .gallery img { width: 100%; display: block; outline: none; border: none; }
 
-        /* 3. 过渡区域：电影感文字排版 */
+        /* 中间文字区域 */
         .transition-section {
             padding: 160px 20px; text-align: center; background: #000;
-            display: flex; flex-direction: column; justify-content: center; min-height: 65vh;
+            display: flex; flex-direction: column; justify-content: center; min-height: 60vh;
         }
         .transition-section p { 
             color: var(--static-gold); 
@@ -78,7 +73,7 @@
         }
         
         .gold-ink {
-            margin-top: 30px; 
+            margin: 30px auto 0; 
             font-size: 21px; 
             font-weight: 400; 
             letter-spacing: 7px;
@@ -88,24 +83,56 @@
             text-shadow: 0px 2px 15px rgba(212, 175, 55, 0.2);
             cursor: pointer;
             text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
         }
+        .gold-ink:active { transform: scale(0.95); }
 
-        /* 底部固定背景 */
+        /* 重点修复：底部背景区域 */
         .fixed-bg-section {
-            position: relative; width: 100%; height: 100vh;
-            background: url('img5.jpg') center center no-repeat fixed; 
-            background-size: cover;
-            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-        }
-        /* 遮罩，让底部文字更清晰 */
-        .fixed-bg-section::after {
-            content: ""; position: absolute; bottom: 0; width: 100%; height: 90%;
-            background: linear-gradient(to top, #000 35%, transparent 100%); z-index: 1;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: #000;
         }
 
-        .footer-overlay { position: relative; z-index: 10; padding-bottom: 60px; text-align: center; width: 100%; }
+        /* 使用伪元素承载背景图，规避移动端 background-attachment: fixed 的 Bug */
+        .fixed-bg-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('img5.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* 桌面端维持固定感，移动端回退为正常滚动 */
+            background-attachment: scroll; 
+            z-index: 0;
+        }
+
+        /* 底部压暗遮罩 */
+        .fixed-bg-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 80%;
+            background: linear-gradient(to top, #000 30%, rgba(0,0,0,0.6) 60%, transparent 100%);
+            z-index: 1;
+        }
+
+        /* 内容置于遮罩之上 */
+        .footer-overlay { 
+            position: relative; 
+            z-index: 10; 
+            padding-bottom: calc(60px + env(safe-area-inset-bottom)); 
+            text-align: center; 
+            width: 100%; 
+        }
         
-        /* 获客入口样式 */
         .contact-links { margin-bottom: 35px; display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
         .contact-links a { 
             color: var(--static-gold); 
@@ -127,27 +154,32 @@
             .transition-section { padding: 100px 20px; }
             .gold-ink { font-size: 18px; }
             .qr-item img { width: 105px; height: 105px; }
+            /* 针对移动端取消 fixed 效果确保图片显示 */
+            .fixed-bg-section::before { background-attachment: scroll; }
         }
     </style>
 </head>
 <body>
 
+    <!-- 背景音乐 -->
     <div id="music-btn" class="music-control">
         <audio id="bg-audio" src="bgm.mp3" loop preload="auto"></audio>
         <span class="music-icon"><i class="fa-solid fa-compact-disc"></i></span>
     </div>
 
+    <!-- 导航 -->
     <nav class="floating-nav">
         <a href="https://jwabmbou.studio.site" target="_blank" class="nav-link">
             <span class="main-text">日本語</span>
             <span class="sub-text">Language Service</span>
         </a>
-        <a href="https://abm-mj.pages.dev" target="_blank" class="nav-link">
-            <span class="main-text">JW.ABM | 墨金</span>
+        <a href="https://abm-mj.pages.dev/" target="_blank" class="nav-link">
+            <span class="main-text">JW.ABM|墨金</span>
             <span class="sub-text">Global Business</span>
         </a>
     </nav>
 
+    <!-- 内容图层 -->
     <div class="gallery">
         <img src="img1.jpg" alt="情绪开篇" loading="eager">
         <img src="img2.jpg" alt="真实观察" loading="lazy">
@@ -161,6 +193,7 @@
         <div class="gold-ink" onclick="copyWechat()">可以先找我聊清楚</div>
     </div>
 
+    <!-- 修复后的底部背景区 -->
     <div class="fixed-bg-section">
         <div class="footer-overlay">
             <div class="contact-links">
@@ -169,13 +202,22 @@
                 <a href="mailto:jw.abm777@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
             </div>
 
-            
+            <div class="qr-group">
+                <div class="qr-item">
+                    <img src="qr-wechat.png" alt="微信联系">
+                    <span>微信联系</span>
+                </div>
+                <div class="qr-item">
+                    <img src="qr-line.png" alt="LINE 账号">
+                    <span>LINE 账号</span>
+                </div>
+            </div>
             <p class="copyright">不讲故事 · 只解决实际问题</p>
         </div>
     </div>
 
     <script>
-        // 音乐交互
+        // 音乐播放控制
         const btn = document.getElementById('music-btn');
         const audio = document.getElementById('bg-audio');
         const icon = document.querySelector('.music-icon');
@@ -183,7 +225,7 @@
 
         btn.onclick = function() {
             if (!isPlaying) { 
-                audio.play(); 
+                audio.play().catch(e => console.log("Audio play blocked by browser")); 
                 icon.classList.add('rotating'); 
             } else { 
                 audio.pause(); 
@@ -192,14 +234,16 @@
             isPlaying = !isPlaying;
         };
 
-        // 获客钩子：点击复制微信号
+        // 复制微信号并提示
         function copyWechat() {
-            const wechatId = "l08093084568"; // 这里填入你的真实微信号
+            const wechatId = "l08093084568";
             
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(wechatId).then(() => {
-                    showSuccess();
-                });
+            const handleCopy = () => {
+                alert("微信号已复制。备注“看完了”，我会知道你是谁。");
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(wechatId).then(handleCopy);
             } else {
                 const input = document.createElement('input');
                 input.value = wechatId;
@@ -207,12 +251,8 @@
                 input.select();
                 document.execCommand('copy');
                 document.body.removeChild(input);
-                showSuccess();
+                handleCopy();
             }
-        }
-
-        function showSuccess() {
-            alert("微信号已复制。备注“看完了”，我会知道你是谁。");
         }
     </script>
 </body>
