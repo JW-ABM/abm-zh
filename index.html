@@ -4,16 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>JW.ABM|株式会社 不讲故事，只解决实际问题。</title>
+    <title>JW.ABM | 株式会社 不讲故事，只解决实际问题。</title>
     <meta name="description" content="不讲故事，只解决实际问题。用真实经历，讨论现实选择与长期结构。">
     <meta name="keywords" content="出国咨询, 跨境贸易, 电商运营, 网站建设, JW.ABM | 墨金">
     
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://abm-mj.pages.dev/">
-    <meta property="og:title" content="JW.ABM | 墨金">
-    <meta property="og:description" content="出国咨询, 跨境贸易, 电商运营, 网站建设。">
-    <meta property="og:image" content="https://abm-mj.pages.dev/cover.jpg">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
     <style>
@@ -34,37 +28,36 @@
             letter-spacing: 0.15em;
         }
 
-        /* 音乐控制 */
-               .music-control {
-    position: fixed; 
-    top: 30px; /* 下移一点点，与导航对齐 */
-    left: 20px; 
-    z-index: 1000;
-    width: 32px;  /* 缩小尺寸 */
-    height: 32px; 
-    /* 极致透明的边框 */
-    border: 0.3px solid rgba(212,175,55,0.15); 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    cursor: pointer; 
-    background: rgba(0,0,0,0.1); /* 几乎全透明 */
-    transition: all 0.5s ease;
-    backdrop-filter: blur(2px); /* 轻微模糊，增加高级感但不遮字 */
-}
-       /* 图标更淡一些 */ 
+        /* 1. 音乐控制 - 极致透明且不遮字 */
+        .music-control {
+            position: fixed; top: 25px; left: 20px; z-index: 1000;
+            width: 36px; height: 36px; 
+            border: 0.5px solid rgba(212,175,55,0.2); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; background: rgba(0,0,0,0.1); transition: all 0.5s ease;
+            backdrop-filter: blur(2px);
+        }
+        
         .music-icon { 
-    font-size: 12px; /* 缩小图标 */
-    color: var(--static-gold); 
-    opacity: 0.4; /* 初始透明度设为 0.4 */
-    transition: opacity 0.3s ease;
-}
-        /* 播放时图标亮起，更有交互感 */
-.music-control:active .music-icon,
-.rotating {
-    opacity: 0.8; 
-}
+            font-size: 13px; 
+            color: var(--static-gold); 
+            opacity: 0.3; /* 平时极淡，不干扰视线 */
+            transition: opacity 0.5s ease;
+            display: inline-block;
+        }
+
+        /* 旋转动画定义 */
+        @keyframes rotate { 
+            from { transform: rotate(0deg); } 
+            to { transform: rotate(360deg); } 
+        }
+
+        /* 播放状态：图标变亮并旋转 */
+        .rotating { 
+            animation: rotate 5s linear infinite !important; 
+            opacity: 0.8 !important; 
+        }
+
         /* 右上角导航 */
         .floating-nav {
             position: fixed; top: 30px; right: 25px; z-index: 1000;
@@ -106,7 +99,7 @@
         }
         .gold-ink:active { transform: scale(0.95); }
 
-        /* 重点修复：底部背景区域 */
+        /* 底部背景区域修复 */
         .fixed-bg-section {
             position: relative;
             width: 100%;
@@ -119,7 +112,6 @@
             background-color: #000;
         }
 
-        /* 使用伪元素承载背景图，规避移动端 background-attachment: fixed 的 Bug */
         .fixed-bg-section::before {
             content: "";
             position: absolute;
@@ -128,12 +120,9 @@
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
-            /* 桌面端维持固定感，移动端回退为正常滚动 */
-            background-attachment: scroll; 
             z-index: 0;
         }
 
-        /* 底部压暗遮罩 */
         .fixed-bg-section::after {
             content: "";
             position: absolute;
@@ -142,7 +131,6 @@
             z-index: 1;
         }
 
-        /* 内容置于遮罩之上 */
         .footer-overlay { 
             position: relative; 
             z-index: 10; 
@@ -172,14 +160,12 @@
             .transition-section { padding: 100px 20px; }
             .gold-ink { font-size: 18px; }
             .qr-item img { width: 105px; height: 105px; }
-            /* 针对移动端取消 fixed 效果确保图片显示 */
-            .fixed-bg-section::before { background-attachment: scroll; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 背景音乐 -->
+    <!-- 音乐 -->
     <div id="music-btn" class="music-control">
         <audio id="bg-audio" src="bgm.mp3" loop preload="auto"></audio>
         <span class="music-icon"><i class="fa-solid fa-compact-disc"></i></span>
@@ -197,7 +183,7 @@
         </a>
     </nav>
 
-    <!-- 内容图层 -->
+    <!-- 内容 -->
     <div class="gallery">
         <img src="img1.jpg" alt="情绪开篇" loading="eager">
         <img src="img2.jpg" alt="真实观察" loading="lazy">
@@ -205,9 +191,12 @@
         <img src="img4.jpg" alt="决策价值" loading="lazy">
     </div>
 
-   
+    <div class="transition-section">
+        <p>有想法，但没方向？</p>
+        <p>很多时候，选择比努力更需要逻辑</p>
+        <div class="gold-ink" onclick="copyWechat()">可以先找我聊清楚</div>
+    </div>
 
-    <!-- 修复后的底部背景区 -->
     <div class="fixed-bg-section">
         <div class="footer-overlay">
             <div class="contact-links">
@@ -231,7 +220,6 @@
     </div>
 
     <script>
-        // 音乐播放控制
         const btn = document.getElementById('music-btn');
         const audio = document.getElementById('bg-audio');
         const icon = document.querySelector('.music-icon');
@@ -239,22 +227,23 @@
 
         btn.onclick = function() {
             if (!isPlaying) { 
-                audio.play().catch(e => console.log("Audio play blocked by browser")); 
-                icon.classList.add('rotating'); 
+                audio.play().then(() => {
+                    icon.classList.add('rotating'); 
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log("Play blocked");
+                    // 部分手机首次需引导点击
+                }); 
             } else { 
                 audio.pause(); 
                 icon.classList.remove('rotating'); 
+                isPlaying = false;
             }
-            isPlaying = !isPlaying;
         };
 
-        // 复制微信号并提示
         function copyWechat() {
             const wechatId = "l08093084568";
-            
-            const handleCopy = () => {
-                alert("微信号已复制。备注“看完了”，我会知道你是谁。");
-            };
+            const handleCopy = () => alert("微信号已复制。备注“看完了”，我会知道你是谁。");
 
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(wechatId).then(handleCopy);
